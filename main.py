@@ -39,7 +39,7 @@ def adding_text(img, text, position, size, colour):
 
 
 url = 'https://www.nytimes.com/section/'
-topic = ['technology', 'science', 'politics', 'sports', 'business', 'style']
+topic = ['technology', 'science', 'politics', 'sports', 'business', 'health']
 i = 0
 
 hkgrotesk = 'fonts/hkgrotesk.ttf'
@@ -107,9 +107,10 @@ def scrape_news():
     img.write_text_box((575, 1250), news_b_5, box_width=400, font_filename=hkgrotesk, font_size=25, color=color, place='center')
     img.save('img/whitetext.png')
     time.sleep(10)
-    tweet(api, '', 'img/whitetext.png')
+    tweet(api, 'THE BEST HEADS: Top 6 headlines around the world! Follow @thebestheads #tbh #thebestheads 🔥', 'img/whitetext.png')
 
 if __name__ == '__main__':
     api = api()
     while True:
         scrape_news()
+        time.sleep(28800)
