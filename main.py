@@ -2,14 +2,22 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import tweepy
-import keys
 from PIL import Image, ImageDraw, ImageFont
 from image_utils import ImageText
-import urllib.request
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
+API_SECRET = os.getenv('API_SECRET')
+BEARER_TOKEN = os.getenv('BEARER_TOKEN')
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
+ACCESS_TOKEN_SECRET = os.getenv('ACCESS_TOKEN_SECRET')
 
 def api():
-    auth = tweepy.OAuthHandler(keys.api_key, keys.api_secret)
-    auth.set_access_token(keys.access_token, keys.access_token_secret)
+    auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
     return tweepy.API(auth)
 
@@ -21,7 +29,7 @@ def tweet(api: tweepy.API, message: str, image_path=None):
 
     print('Tweeted successfully!')
 
-img = ImageText('img/yellow.png')
+img = ImageText('img/blob.png')
 
 def adding_text(img, text, position, size, colour):
     font = ImageFont.truetype("fonts/hkgrotesk.ttf", size, encoding="unic")
@@ -43,13 +51,8 @@ def scrape_news():
     soup_0 = BeautifulSoup(html_text_0, 'lxml')
     news_t_0 = soup_0.find('h2', class_='css-1kv6qi e15t083i0').text
     news_b_0 = soup_0.find('p', class_='css-1pga48a e15t083i1').text
-    news_i_0 = soup_0.find('img', class_='css-rq4mmj')
     news_post_0 = f'Booook NEWS: {news_t_0}\n{news_b_0}\n'
     print(news_post_0)
-    print(news_i_0['src'])
-    urllib.request.urlretrieve(news_i_0['src'], "img/0.png")
-    im0 = Image.open('img/0.png')
-    im0.thumbnail((200, 200))
     
     html_text_1 = requests.get(f'{url}{topic[1]}').text
     soup_1 = BeautifulSoup(html_text_1, 'lxml')
@@ -90,7 +93,6 @@ def scrape_news():
     #         img = adding_text(img, news_t, (10, 50), 50, (0, 0, 0,200))
     #         img = adding_text(img, news_b, (10, 150), 50, (0, 0, 0,200))
     #         img.save('img/whitetext.png')
-    img.write_text_box((350, 50), 'THE BEST HEADS', box_width=400, font_filename=cooperhewitt, font_size=35, color=color, place='center')
     img.write_text_box((75, 150), news_t_0, box_width=400, font_filename=bluunext, font_size=25, color=color, place='center')
     img.write_text_box((75, 250), news_b_0, box_width=400, font_filename=hkgrotesk, font_size=25, color=color, place='center')
     img.write_text_box((575, 150), news_t_1, box_width=400, font_filename=bluunext, font_size=25, color=color, place='center')
@@ -104,10 +106,6 @@ def scrape_news():
     img.write_text_box((575, 1150), news_t_5, box_width=400, font_filename=bluunext, font_size=25, color=color, place='center')
     img.write_text_box((575, 1250), news_b_5, box_width=400, font_filename=hkgrotesk, font_size=25, color=color, place='center')
     img.save('img/whitetext.png')
-    image = Image.open('img/whitetext.png')
-    back_im = image.copy()
-    back_im.paste(im0, (150, 450))
-    back_im.save('img/whitetext.png', quality=95)
     time.sleep(10)
     tweet(api, '', 'img/whitetext.png')
 
