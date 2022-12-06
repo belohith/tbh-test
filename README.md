@@ -1,4 +1,4 @@
-#THE BEST HEADS
+###THE BEST HEADS
 
 A Twitter Bot for the Top 6 headlines worldwide (ok, mostly the US now)!
 
