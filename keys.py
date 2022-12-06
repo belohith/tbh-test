@@ -1,0 +1,5 @@
+api_key = '7JLOqdVIBn244gnJp7yhBO8gB'
+api_secret = 'fX5hakD4rVe2MgjsYB3BEq86Jn8Qbtlg8r8ZrZKCX1wT6pGwDP'
+bearer_token = 'AAAAAAAAAAAAAAAAAAAAADkikAEAAAAAfhz267eDvUmGpDO0%2FHll08T6F5g%3D41bUD0RzGS4r2qMkNUbvpE3L5c9LgecuCUralOup74NaDlguDl'
+access_token = '1599236211985489921-F59uvBIgIEuFTw6bdU1GQEBx3TsnD9'
+access_token_secret = 'qLycNC2wPKvWIQaWE5P1ylgKKTTNUaBR9p7nTEHBgmxjp'
